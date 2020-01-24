@@ -3,6 +3,8 @@
 
 $ResultingObject = @()
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 $result = Invoke-WebRequest -Uri "https://registry.hub.docker.com/v2/repositories/microsoft/dynamics-nav/tags/?page_size=250" 
 $JsonObject = ConvertFrom-Json -InputObject $result.Content
 $ResultingObject = $JsonObject.results
